@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Navis">
+<meta name="theme-color" content="#ffffff">
+<title>Navis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+  --red:        #C62828;
+  --red-dark:   #B71C1C;
+  --red-light:  #FFEBEE;
+  --blue:       #0A84FF;
+  --green:      #30D158;
+  --orange:     #FF9500;
+  --purple:     #7B2FBE;
+  --bg:         #F2F2F7;
+  --surface:    #FFFFFF;
+  --text:       #1C1C1E;
+  --text2:      #8E8E93;
+  --text3:      #AEAEB2;
+  --border:     #E5E5EA;
+  --font:       'DM Sans', sans-serif;
+  --mono:       'DM Mono', monospace;
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --safe-top:   env(safe-area-inset-top, 20px);
+  --safe-bot:   env(safe-area-inset-bottom, 20px);
+}
+html, body {
+  height: 100%; width: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCREENS ─────────────────────────────────────────────────────────────── */
+#app { height: 100%; width: 100%; position: relative; overflow: hidden; }
+.screen {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.screen.active { opacity: 1; pointer-events: all; }
+
+/* ── HEADER ──────────────────────────────────────────────────────────────── */
+.header {
+  background: var(--surface);
+  padding: calc(var(--safe-top) + 10px) 20px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  flex-shrink: 0;
+  position: relative; z-index: 2;
+}
+.header-greeting { font-size: 20px; font-weight: 600; color: var(--text); }
+.header-title    { font-size: 18px; font-weight: 700; color: var(--text); }
+.header-back {
+  font-size: 17px; font-weight: 600; color: var(--blue);
+  background: none; border: none; cursor: pointer; padding: 4px 0;
+}
+.header-notif { font-size: 22px; background: none; border: none; cursor: pointer; padding: 4px; }
+.header-spacer { width: 60px; }
+
+/* ── SCROLL CONTENT ──────────────────────────────────────────────────────── */
+.scroll-content {
+  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding-bottom: 140px;
+}
+
+/* ── DBS CARD ────────────────────────────────────────────────────────────── */
+.dbs-card {
+  margin: 16px;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+  box-shadow: 0 8px 24px rgba(198,40,40,0.35);
+  position: relative;
+  overflow: hidden;
+}
+.dbs-card::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.card-logo        { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 3px; letter-spacing: -0.5px; }
+.card-acct-label  { font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 2px; letter-spacing: 0.8px; }
+.card-acct-num    { font-size: 12px; color: rgba(255,255,255,0.85); margin-bottom: 20px; font-family: var(--mono); }
+.card-bal-label   { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+.card-bal         { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 4px; letter-spacing: -1px; }
+.card-paynow      { font-size: 10px; color: rgba(255,255,255,0.6); margin-bottom: 22px; letter-spacing: 1.5px; }
+.card-buttons     { display: flex; gap: 12px; }
+.card-btn {
+  flex: 1; background: rgba(255,255,255,0.15);
+  border: none; border-radius: var(--radius-sm);
+  padding: 14px 8px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s;
+}
+.card-btn:active { background: rgba(255,255,255,0.25); }
+.card-btn-icon  { font-size: 24px; }
+.card-btn-label { font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.3px; }
+
+/* ── HIGHLIGHT OVERLAY ───────────────────────────────────────────────────── */
+.hl-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.72);
+  border-radius: var(--radius-lg);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+.hl-overlay.visible { display: flex; }
+.hl-ring {
+  position: absolute;
+  border-radius: var(--radius-sm);
+  border: 4px solid var(--orange);
+  animation: hlPulse 0.9s ease-in-out infinite alternate;
+}
+.hl-ring-paynow  { bottom: 14px; left: 14px; width: 162px; height: 68px; }
+.hl-ring-contact { top: 0; left: 0; right: 0; height: 84px; border-radius: var(--radius-sm); }
+.hl-arrow { font-size: 40px; margin-bottom: 6px; }
+.hl-text  { font-size: 17px; font-weight: 700; color: #fff; }
+@keyframes hlPulse {
+  from { border-color: #FF9500; box-shadow: 0 0 0 0 rgba(255,149,0,0.4); }
+  to   { border-color: #FF3B00; box-shadow: 0 0 0 8px rgba(255,59,0,0); }
+}
+
+/* ── CONTACT LIST ────────────────────────────────────────────────────────── */
+.list-card {
+  background: var(--surface); margin: 16px;
+  padding: 20px; border-radius: var(--radius-lg);
+  position: relative; overflow: hidden;
+}
+.list-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+.contact-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px; background: var(--bg);
+  border-radius: var(--radius-sm); margin-bottom: 10px;
+  transition: background 0.15s;
+}
+.contact-row.highlighted { background: #FFF3CD; }
+.contact-avatar {
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--red); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.contact-info { flex: 1; }
+.contact-name  { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.contact-sub   { font-size: 14px; color: var(--text2); margin-bottom: 1px; }
+.contact-phone { font-size: 13px; color: var(--text3); font-family: var(--mono); }
+.contact-arrow { font-size: 18px; color: var(--text3); }
+
+/* contact highlight overlay */
+.contact-hl-overlay {
+  position: absolute;
+  top: 62px; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.72);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  display: none;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+}
+.contact-hl-overlay.visible { display: flex; }
+.contact-hl-label { display: flex; align-items: center; gap: 8px; }
+
+/* ── PAYMENT PAGE ────────────────────────────────────────────────────────── */
+.pay-card {
+  background: var(--surface); margin: 16px;
+  padding: 24px; border-radius: var(--radius-lg);
+}
+.recipient-row {
+  display: flex; align-items: center; gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bg);
+  margin-bottom: 20px;
+}
+.recipient-avatar {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--red); display: flex;
+  align-items: center; justify-content: center; font-size: 28px;
+}
+.recipient-name  { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.recipient-phone { font-size: 15px; color: var(--text2); font-family: var(--mono); }
+
+.amount-section { text-align: center; margin-bottom: 24px; }
+.amount-label   { font-size: 14px; color: var(--text2); margin-bottom: 10px; }
+.amount-row     { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 6px; }
+.amount-dollar  { font-size: 42px; font-weight: 700; color: var(--text2); }
+.amount-input {
+  font-size: 52px; font-weight: 700; color: var(--text);
+  border: none; outline: none; background: transparent;
+  width: 160px; text-align: center; font-family: var(--font);
+  caret-color: var(--blue);
+}
+.amount-hint { font-size: 13px; color: var(--orange); font-style: italic; }
+
+.details-box {
+  background: var(--bg); padding: 14px;
+  border-radius: var(--radius-sm); margin-bottom: 22px;
+}
+.detail-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 8px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-label { font-size: 14px; color: var(--text2); }
+.detail-value { font-size: 14px; font-weight: 600; color: var(--text); text-align: right; }
+
+.confirm-btn {
+  width: 100%; padding: 18px;
+  background: var(--red); color: #fff;
+  border: none; border-radius: var(--radius-md);
+  font-size: 18px; font-weight: 700;
+  font-family: var(--font); cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(198,40,40,0.3);
+}
+.confirm-btn:active { opacity: 0.85; transform: scale(0.98); }
+
+/* ── FLOATING BUBBLE ─────────────────────────────────────────────────────── */
+#bubble {
+  position: fixed;
+  bottom: calc(var(--safe-bot) + 100px);
+  right: 20px;
+  width: 66px; height: 66px;
+  z-index: 999;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+#bubble:active { cursor: grabbing; }
+.bubble-btn {
+  width: 66px; height: 66px; border-radius: 33px;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--blue), #005EC4);
+  box-shadow: 0 6px 20px rgba(10,132,255,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative; overflow: hidden;
+}
+.bubble-btn.listening {
+  background: linear-gradient(135deg, #FF6B35, #FF3B00);
+  box-shadow: 0 6px 20px rgba(255,59,0,0.4);
+  animation: bubblePulse 0.9s ease-in-out infinite;
+}
+.bubble-btn.processing {
+  background: linear-gradient(135deg, var(--purple), #5A189A);
+  box-shadow: 0 6px 20px rgba(123,47,190,0.4);
+}
+@keyframes bubblePulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+.bubble-hint {
+  position: absolute; bottom: -30px; left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  text-align: center; pointer-events: none;
+  max-width: 120px; white-space: normal; text-align: center;
+}
+.bubble-spinner {
+  width: 24px; height: 24px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.idle-pulse {
+  animation: idlePulse 2.4s ease-in-out infinite;
+}
+@keyframes idlePulse {
+  0%,100% { transform: scale(1); box-shadow: 0 6px 20px rgba(10,132,255,0.4); }
+  50%      { transform: scale(1.06); box-shadow: 0 8px 28px rgba(10,132,255,0.55); }
+}
+
+/* ── ASSISTANT PANEL ─────────────────────────────────────────────────────── */
+#panel-backdrop {
+  position: fixed; inset: 0; z-index: 997;
+  background: rgba(0,0,0,0.3);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(2px);
+}
+#panel-backdrop.visible { opacity: 1; pointer-events: all; }
+
+#panel {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 66vh;
+  background: rgba(248,248,252,0.96);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 26px 26px 0 0;
+  z-index: 998;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex; flex-direction: column;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.12);
+  border-top: 0.5px solid rgba(255,255,255,0.8);
+}
+#panel.visible { transform: translateY(0); }
+.panel-handle {
+  width: 36px; height: 5px;
+  background: #D1D1D6; border-radius: 3px;
+  margin: 12px auto 6px;
+  flex-shrink: 0;
+}
+.panel-scroll {
+  flex: 1; overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 24px calc(var(--safe-bot) + 16px);
+}
+
+/* Panel content states */
+.panel-state { display: none; }
+.panel-state.active { display: block; }
+
+.panel-title {
+  font-size: 22px; font-weight: 700; color: var(--text);
+  text-align: center; margin-bottom: 8px;
+}
+.panel-sub {
+  font-size: 15px; color: var(--text2);
+  text-align: center; margin-bottom: 20px; line-height: 1.5;
+}
+.panel-hint {
+  font-size: 15px; color: var(--text2);
+  text-align: center; margin-bottom: 10px;
+}
+.panel-example {
+  font-size: 13px; color: var(--text3);
+  text-align: center; font-style: italic; margin-bottom: 18px;
+}
+
+/* Transcript box */
+.transcript-box {
+  background: #EFF3FF; padding: 14px;
+  border-radius: var(--radius-sm); margin-bottom: 16px;
+}
+.transcript-label { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+.transcript-text  { font-size: 15px; color: var(--text); font-style: italic; line-height: 1.5; }
+
+/* Partial text (live) */
+.partial-box {
+  background: #F0FFF4; padding: 14px;
+  border-radius: var(--radius-sm); margin-bottom: 16px;
+  border: 1px solid rgba(48,209,88,0.3);
+}
+
+/* Error box */
+.error-box {
+  background: #FFF0EF; padding: 14px;
+  border-radius: var(--radius-sm); margin-bottom: 14px;
+  border-left: 3px solid #D70015;
+}
+.error-text { font-size: 13px; color: #D70015; line-height: 1.6; white-space: pre-line; }
+
+/* Status card */
+.status-card {
+  background: var(--bg); border-radius: var(--radius-sm);
+  padding: 14px; margin-top: 8px;
+}
+.status-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.status-url   { font-size: 12px; color: var(--blue); font-family: var(--mono); margin-bottom: 5px; }
+.status-note  { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* Summary box */
+.summary-box {
+  background: var(--bg); border-radius: var(--radius-sm);
+  padding: 14px; margin-bottom: 20px;
+}
+.summary-row {
+  display: flex; justify-content: space-between;
+  padding: 8px 0; border-bottom: 0.5px solid var(--border);
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-label { font-size: 15px; color: var(--text2); }
+.summary-value { font-size: 15px; font-weight: 600; color: var(--text); }
+
+/* Info box */
+.info-box {
+  display: flex; gap: 12px;
+  background: #E8F4FD; padding: 14px;
+  border-radius: var(--radius-sm); margin-bottom: 20px;
+  align-items: flex-start;
+}
+.info-icon { font-size: 20px; flex-shrink: 0; }
+.info-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+/* Success */
+.success-box { text-align: center; margin-bottom: 28px; }
+.success-tick {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 40px; color: #fff;
+  box-shadow: 0 8px 24px rgba(48,209,88,0.4);
+  animation: tickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes tickPop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.success-title { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.success-amt   { font-size: 17px; color: var(--text2); margin-bottom: 4px; }
+.success-date  { font-size: 13px; color: var(--text3); }
+
+/* Spinner in panel */
+.panel-spinner {
+  width: 40px; height: 40px;
+  border: 4px solid rgba(10,132,255,0.2);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 28px auto;
+}
+.panel-spinner.purple {
+  border-color: rgba(123,47,190,0.2);
+  border-top-color: var(--purple);
+}
+
+/* Buttons */
+.btn {
+  width: 100%; padding: 16px;
+  border-radius: var(--radius-md);
+  border: none; cursor: pointer;
+  font-size: 17px; font-weight: 600;
+  font-family: var(--font);
+  margin-bottom: 10px;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:active { opacity: 0.8; transform: scale(0.98); }
+.btn-primary { background: var(--red); color: #fff; box-shadow: 0 4px 14px rgba(198,40,40,0.25); }
+.btn-secondary { background: var(--bg); color: var(--text); }
+
+/* LM Studio field */
+.lm-field { margin-bottom: 16px; }
+.lm-field label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 6px; }
+.lm-input {
+  width: 100%; padding: 12px 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px;
+  font-family: var(--mono); color: var(--text);
+  outline: none; transition: border-color 0.15s;
+}
+.lm-input:focus { border-color: var(--blue); }
+
+/* ── VOICE NOT SUPPORTED ─────────────────────────────────────────────────── */
+.voice-fallback { margin-bottom: 16px; }
+.voice-fallback label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 6px; }
+.voice-text-input {
+  width: 100%; padding: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 16px;
+  font-family: var(--font); color: var(--text); outline: none;
+  transition: border-color 0.15s;
+}
+.voice-text-input:focus { border-color: var(--blue); }
+
+/* ── BROWSER BADGE ───────────────────────────────────────────────────────── */
+.browser-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; padding: 4px 10px;
+  border-radius: 20px; margin-bottom: 14px;
+  font-weight: 500;
+}
+.badge-ok   { background: #E8F5E9; color: #2E7D32; }
+.badge-warn { background: #FFF3E0; color: #E65100; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ── HOME SCREEN ──────────────────────────────────────────────────────── -->
+  <div class="screen active" id="screen-home">
+    <div class="header">
+      <span class="header-greeting">Good morning, User 👋</span>
+      <button class="header-notif">🔔</button>
+    </div>
+    <div class="scroll-content">
+      <div class="dbs-card">
+        <div class="card-logo">✕ DBS</div>
+        <div class="card-acct-label">POSB SAVINGS ACCOUNT</div>
+        <div class="card-acct-num">XXXX-XXXX-XXXX-0764</div>
+        <div class="card-bal-label">Current Balance:</div>
+        <div class="card-bal">$12,430.55</div>
+        <div class="card-paynow">PAYNOW-ENABLED</div>
+        <div class="card-buttons">
+          <button class="card-btn"><span class="card-btn-icon">💸</span><span class="card-btn-label">PAY / REQUEST</span></button>
+          <button class="card-btn"><span class="card-btn-icon">📱</span><span class="card-btn-label">SCAN QR</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HOME GUIDED ──────────────────────────────────────────────────────── -->
+  <div class="screen" id="screen-home-guided">
+    <div class="header">
+      <span class="header-greeting">Good morning, User 👋</span>
+      <button class="header-notif">🔔</button>
+    </div>
+    <div class="scroll-content">
+      <div class="dbs-card">
+        <div class="card-logo">✕ DBS</div>
+        <div class="card-acct-label">POSB SAVINGS ACCOUNT</div>
+        <div class="card-bal-label">Current Balance:</div>
+        <div class="card-bal">$12,430.55</div>
+        <div class="card-paynow">PAYNOW-ENABLED</div>
+        <div class="hl-overlay" id="hl-paynow">
+          <div class="hl-ring hl-ring-paynow"></div>
+          <div class="hl-arrow">👇</div>
+          <div class="hl-text">Opening PayNow…</div>
+        </div>
+        <div class="card-buttons">
+          <button class="card-btn"><span class="card-btn-icon">💸</span><span class="card-btn-label">PAYNOW</span></button>
+          <button class="card-btn"><span class="card-btn-icon">📱</span><span class="card-btn-label">SCAN QR</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTACT LIST ─────────────────────────────────────────────────────── -->
+  <div class="screen" id="screen-contacts">
+    <div class="header">
+      <button class="header-back" onclick="showScreen('home')">← Back</button>
+      <span class="header-title">Select Contact</span>
+      <div class="header-spacer"></div>
+    </div>
+    <div class="scroll-content">
+      <div class="list-card">
+        <div class="list-title">Recent Contacts</div>
+        <div class="contact-hl-overlay" id="hl-contact">
+          <div class="hl-ring hl-ring-contact"></div>
+          <div class="contact-hl-label">
+            <span style="font-size:36px">👉</span>
+            <span class="hl-text" id="hl-contact-text">Selecting…</span>
+          </div>
+        </div>
+        <div class="contact-row" id="contact-sarah">
+          <div class="contact-avatar">👧</div>
+          <div class="contact-info">
+            <div class="contact-name">Sarah Chen</div>
+            <div class="contact-sub">Daughter</div>
+            <div class="contact-phone">+65 9123 4567</div>
+          </div>
+          <div class="contact-arrow">→</div>
+        </div>
+        <div class="contact-row" id="contact-john">
+          <div class="contact-avatar">👦</div>
+          <div class="contact-info">
+            <div class="contact-name">John Chen</div>
+            <div class="contact-sub">Son</div>
+            <div class="contact-phone">+65 8234 5678</div>
+          </div>
+          <div class="contact-arrow">→</div>
+        </div>
+        <div class="contact-row" id="contact-mom">
+          <div class="contact-avatar">👵</div>
+          <div class="contact-info">
+            <div class="contact-name">Mom</div>
+            <div class="contact-sub">Mother</div>
+            <div class="contact-phone">+65 9876 5432</div>
+          </div>
+          <div class="contact-arrow">→</div>
+        </div>
+        <div class="contact-row" id="contact-david">
+          <div class="contact-avatar">👨</div>
+          <div class="contact-info">
+            <div class="contact-name">David Lee</div>
+            <div class="contact-sub">Friend</div>
+            <div class="contact-phone">+65 8765 4321</div>
+          </div>
+          <div class="contact-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYMENT PAGE ─────────────────────────────────────────────────────── -->
+  <div class="screen" id="screen-payment">
+    <div class="header">
+      <button class="header-back" onclick="showScreen('contacts')">← Back</button>
+      <span class="header-title">PayNow Payment</span>
+      <div class="header-spacer"></div>
+    </div>
+    <div class="scroll-content">
+      <div class="pay-card">
+        <div class="recipient-row">
+          <div class="recipient-avatar" id="pay-avatar">👧</div>
+          <div>
+            <div class="recipient-name" id="pay-name">Sarah Chen</div>
+            <div class="recipient-phone" id="pay-phone">+65 9123 4567</div>
+          </div>
+        </div>
+        <div class="amount-section">
+          <div class="amount-label">Amount</div>
+          <div class="amount-row">
+            <div class="amount-dollar">$</div>
+            <input class="amount-input" id="amount-input" type="number" value="50" min="1">
+          </div>
+          <div class="amount-hint">Tap to adjust</div>
+        </div>
+        <div class="details-box">
+          <div class="detail-row">
+            <span class="detail-label">From</span>
+            <span class="detail-value">DBS Savings •••• 0764</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">To</span>
+            <span class="detail-value" id="pay-to">PayNow – +65 9123 4567</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Fee</span>
+            <span class="detail-value">$0.00</span>
+          </div>
+        </div>
+        <button class="confirm-btn" onclick="confirmPayment()">Confirm Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FLOATING BUBBLE ──────────────────────────────────────────────────── -->
+  <div id="bubble">
+    <button class="bubble-btn idle-pulse" id="bubble-btn" onclick="handleBubbleTap()">
+      <span id="bubble-icon">🤖</span>
+      <div class="bubble-spinner" id="bubble-spinner" style="display:none"></div>
+    </button>
+    <div class="bubble-hint" id="bubble-hint">Hold to speak</div>
+  </div>
+
+  <!-- ── PANEL BACKDROP ────────────────────────────────────────────────────── -->
+  <div id="panel-backdrop" onclick="closePanel()"></div>
+
+  <!-- ── ASSISTANT PANEL ──────────────────────────────────────────────────── -->
+  <div id="panel">
+    <div class="panel-handle"></div>
+    <div class="panel-scroll">
+
+      <!-- STATE: idle -->
+      <div class="panel-state active" id="state-idle">
+        <div class="panel-title">Navis Assistant</div>
+
+        <div id="browser-badge-wrap"></div>
+        <div class="error-box" id="error-box" style="display:none">
+          <div class="error-text" id="error-text"></div>
+        </div>
+        <div class="transcript-box" id="transcript-box" style="display:none">
+          <div class="transcript-label">You said:</div>
+          <div class="transcript-text" id="transcript-text"></div>
+        </div>
+
+        <!-- Typed fallback (shown when Web Speech not available) -->
+        <div class="voice-fallback" id="typed-fallback" style="display:none">
+          <label>Type your command:</label>
+          <input class="voice-text-input" id="typed-input"
+            placeholder='e.g. "PayNow $50 to daughter"'
+            onkeydown="if(event.key==='Enter') submitTyped()">
+          <br><br>
+          <button class="btn btn-primary" onclick="submitTyped()">Submit</button>
+        </div>
+
+        <div class="panel-hint" id="voice-hint">Hold the 🤖 button and speak</div>
+        <div class="panel-example">Try: "PayNow fifty dollars to daughter"</div>
+
+        <!-- LM Studio config -->
+        <div class="status-card">
+          <div class="status-title">🖥  LM Studio (intent parsing)</div>
+          <div class="lm-field" style="margin-top:8px">
+            <label>Your computer's LAN IP:</label>
+            <input class="lm-input" id="lm-url-input"
+              value="http://192.168.1.100:1234"
+              placeholder="http://192.168.1.X:1234">
+          </div>
+          <div class="status-note">Load a chat model → Start Server → same Wi-Fi as phone</div>
+        </div>
+      </div>
+
+      <!-- STATE: listening -->
+      <div class="panel-state" id="state-listening">
+        <div class="panel-title">Listening…</div>
+        <div class="partial-box" id="partial-box" style="display:none">
+          <div class="transcript-label">Hearing:</div>
+          <div class="transcript-text" id="partial-text"></div>
+        </div>
+        <div class="panel-spinner"></div>
+        <div class="panel-hint">Tap the 🎙️ button to finish</div>
+      </div>
+
+      <!-- STATE: processing -->
+      <div class="panel-state" id="state-processing">
+        <div class="panel-title">Understanding…</div>
+        <div class="transcript-box" id="proc-transcript-box" style="display:none">
+          <div class="transcript-label">You said:</div>
+          <div class="transcript-text" id="proc-transcript-text"></div>
+        </div>
+        <div class="panel-spinner purple"></div>
+        <div class="panel-hint">Asking LM Studio…</div>
+      </div>
+
+      <!-- STATE: guide start -->
+      <div class="panel-state" id="state-guide">
+        <div class="panel-title" id="guide-title">PayNow $50 to Daughter</div>
+        <div class="panel-sub">I'll navigate each step automatically</div>
+        <div class="transcript-box" id="guide-transcript-box" style="display:none">
+          <div class="transcript-label">You said:</div>
+          <div class="transcript-text" id="guide-transcript-text"></div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-row"><span class="summary-label">To</span><span class="summary-value" id="guide-to">Sarah Chen</span></div>
+          <div class="summary-row"><span class="summary-label">Amount</span><span class="summary-value" id="guide-amount">$50</span></div>
+          <div class="summary-row"><span class="summary-label">Method</span><span class="summary-value">PayNow</span></div>
+        </div>
+        <button class="btn btn-primary" onclick="startAutoNav()">✓  Start Auto-Navigation</button>
+        <button class="btn btn-secondary" onclick="cancelGuide()">✕  Cancel</button>
+      </div>
+
+      <!-- STATE: payment review -->
+      <div class="panel-state" id="state-payment">
+        <div class="panel-title">Review Payment</div>
+        <div class="panel-sub">Tap the amount to adjust, then confirm</div>
+        <div class="info-box">
+          <div class="info-icon">💡</div>
+          <div class="info-text">Press "Confirm Payment" when you're ready to send</div>
+        </div>
+        <button class="btn btn-primary" onclick="closePanel()">✓  Looks Good</button>
+      </div>
+
+      <!-- STATE: success -->
+      <div class="panel-state" id="state-success">
+        <div class="success-box">
+          <div class="success-tick">✓</div>
+          <div class="success-title">Payment Sent!</div>
+          <div class="success-amt" id="success-amt">$50 → Sarah Chen</div>
+          <div class="success-date" id="success-date"></div>
+        </div>
+        <button class="btn btn-primary" onclick="resetApp()">✓  Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ┌─────────────────────────────────────────────────────────────────────────┐
+// │  CONFIG — set your computer's LAN IP in the input field in the panel   │
+// │  or hardcode it here:                                                   │
+// │  const LM_STUDIO_URL = "http://192.168.1.42:1234";                     │
+// └─────────────────────────────────────────────────────────────────────────┘
+function getLMStudioURL() {
+  return document.getElementById('lm-url-input')?.value?.trim()
+    || 'http://192.168.1.100:1234';
+}
+
+// ─── CONTACTS DATA ────────────────────────────────────────────────────────
+const CONTACTS = {
+  sarah:    { name: 'Sarah Chen',  subtitle: 'Daughter', phone: '+65 9123 4567', emoji: '👧', id: 'sarah' },
+  john:     { name: 'John Chen',   subtitle: 'Son',      phone: '+65 8234 5678', emoji: '👦', id: 'john'  },
+  mom:      { name: 'Mom',         subtitle: 'Mother',   phone: '+65 9876 5432', emoji: '👵', id: 'mom'   },
+  david:    { name: 'David Lee',   subtitle: 'Friend',   phone: '+65 8765 4321', emoji: '👨', id: 'david' },
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────
+let currentScreen    = 'home';
+let panelOpen        = false;
+let isListening      = false;
+let isProcessing     = false;
+let voiceSupported   = false;
+let recognition      = null;
+let finalTranscript  = '';
+let currentTx        = { amount: '50', recipientFull: 'Sarah Chen', recipient: 'Daughter', phone: '+65 9123 4567', emoji: '👧' };
+let autoNavTimer1, autoNavTimer2, autoNavTimer3;
+
+// ─── BUBBLE DRAG ─────────────────────────────────────────────────────────
+const bubble = document.getElementById('bubble');
+let dragStartX, dragStartY, bubbleX, bubbleY;
+let isDragging = false;
+let longPressTimer = null;
+
+// Position bubble initially
+bubbleX = window.innerWidth  - 86;
+bubbleY = window.innerHeight - 180;
+bubble.style.left   = bubbleX + 'px';
+bubble.style.top    = bubbleY + 'px';
+bubble.style.bottom = 'auto';
+bubble.style.right  = 'auto';
+
+bubble.addEventListener('touchstart', (e) => {
+  const t = e.touches[0];
+  dragStartX = t.clientX - bubbleX;
+  dragStartY = t.clientY - bubbleY;
+  isDragging = false;
+
+  // Long press to start listening
+  longPressTimer = setTimeout(() => {
+    if (!isDragging) startListening();
+  }, 400);
+}, { passive: true });
+
+bubble.addEventListener('touchmove', (e) => {
+  const t = e.touches[0];
+  const dx = t.clientX - dragStartX;
+  const dy = t.clientY - dragStartY;
+  if (Math.abs(dx - bubbleX) > 5 || Math.abs(dy - bubbleY) > 5) {
+    isDragging = true;
+    clearTimeout(longPressTimer);
+  }
+  bubbleX = dx;
+  bubbleY = Math.max(60, Math.min(window.innerHeight - 80, dy));
+  bubble.style.left = bubbleX + 'px';
+  bubble.style.top  = bubbleY + 'px';
+}, { passive: true });
+
+bubble.addEventListener('touchend', () => {
+  clearTimeout(longPressTimer);
+  // Snap to nearest side
+  const mid = window.innerWidth / 2;
+  bubbleX = bubbleX < mid ? 20 : window.innerWidth - 86;
+  bubble.style.left = bubbleX + 'px';
+  bubble.style.transition = 'left 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+  setTimeout(() => { bubble.style.transition = ''; }, 350);
+});
+
+// ─── BUBBLE TAP ───────────────────────────────────────────────────────────
+function handleBubbleTap() {
+  if (isDragging) return;
+  if (isListening) { stopListening(); return; }
+  if (isProcessing) return;
+  panelOpen ? closePanel() : openPanel();
+}
+
+// ─── SCREEN MANAGEMENT ───────────────────────────────────────────────────
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const map = {
+    home: 'screen-home', 'home-guided': 'screen-home-guided',
+    contacts: 'screen-contacts', payment: 'screen-payment',
+  };
+  document.getElementById(map[name] || 'screen-home').classList.add('active');
+  currentScreen = name;
+}
+
+// ─── PANEL MANAGEMENT ─────────────────────────────────────────────────────
+function openPanel() {
+  document.getElementById('panel').classList.add('visible');
+  document.getElementById('panel-backdrop').classList.add('visible');
+  panelOpen = true;
+}
+function closePanel() {
+  document.getElementById('panel').classList.remove('visible');
+  document.getElementById('panel-backdrop').classList.remove('visible');
+  panelOpen = false;
+}
+function setPanelState(state) {
+  document.querySelectorAll('.panel-state').forEach(s => s.classList.remove('active'));
+  document.getElementById('state-' + state).classList.add('active');
+}
+
+// ─── SPEECH SYNTHESIS (TTS) ───────────────────────────────────────────────
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.9; u.pitch = 1.0;
+  window.speechSynthesis.speak(u);
+}
+
+// ─── VIBRATION ────────────────────────────────────────────────────────────
+function vibrate(pattern) {
+  if (navigator.vibrate) navigator.vibrate(pattern);
+}
+
+// ─── WEB SPEECH API SETUP ────────────────────────────────────────────────
+function initSpeechRecognition() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    voiceSupported = false;
+    showVoiceFallback();
+    return;
+  }
+
+  voiceSupported = true;
+  recognition = new SpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.interimResults = true;
+  recognition.continuous = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onresult = (e) => {
+    let interim = '', final = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if (e.results[i].isFinal) final += t;
+      else interim += t;
+    }
+    if (interim) showPartial(interim);
+    if (final) {
+      finalTranscript = final.trim();
+      stopListeningState();
+      onFinalTranscript(finalTranscript);
+    }
+  };
+
+  recognition.onerror = (e) => {
+    stopListeningState();
+    const msgs = {
+      'no-speech':    'No speech detected. Please try again.',
+      'not-allowed':  'Microphone permission denied. Allow it in browser settings.',
+      'network':      'Network error during recognition.',
+      'audio-capture':'No microphone found.',
+    };
+    showError(msgs[e.error] || `Voice error: ${e.error}`);
+    speak("Sorry, I didn't catch that.");
+    openPanel();
+  };
+
+  recognition.onend = () => {
+    if (isListening) stopListeningState();
+  };
+
+  // Show badge
+  const wrap = document.getElementById('browser-badge-wrap');
+  wrap.innerHTML = `<div class="browser-badge badge-ok">🎙 Voice ready — ${
+    /iPhone|iPad|iPod/.test(navigator.userAgent) ? 'Safari' : 'Chrome'
+  }</div>`;
+}
+
+function showVoiceFallback() {
+  document.getElementById('typed-fallback').style.display = 'block';
+  document.getElementById('voice-hint').style.display = 'none';
+  const wrap = document.getElementById('browser-badge-wrap');
+  wrap.innerHTML = `<div class="browser-badge badge-warn">⚠️ Voice not supported — use text input</div>`;
+  // Change bubble hint
+  document.getElementById('bubble-hint').textContent = 'Tap to open';
+}
+
+// ─── START LISTENING ──────────────────────────────────────────────────────
+function startListening() {
+  if (!voiceSupported || isListening || isProcessing) return;
+  finalTranscript = '';
+  isListening = true;
+  vibrate([30]);
+  speak('I\'m listening');
+
+  const btn = document.getElementById('bubble-btn');
+  btn.classList.remove('idle-pulse');
+  btn.classList.add('listening');
+  document.getElementById('bubble-icon').textContent = '🎙️';
+  document.getElementById('bubble-hint').textContent = 'Tap to stop';
+
+  setPanelState('listening');
+  document.getElementById('partial-box').style.display = 'none';
+  openPanel();
+
+  try { recognition.start(); } catch(e) { /* already started */ }
+}
+
+// ─── STOP LISTENING ───────────────────────────────────────────────────────
+function stopListening() {
+  if (!isListening) return;
+  recognition.stop();
+  stopListeningState();
+  vibrate([20]);
+}
+
+function stopListeningState() {
+  isListening = false;
+  const btn = document.getElementById('bubble-btn');
+  btn.classList.remove('listening');
+  document.getElementById('bubble-icon').textContent = '🤖';
+}
+
+function showPartial(text) {
+  const box = document.getElementById('partial-box');
+  box.style.display = 'block';
+  document.getElementById('partial-text').textContent = `"${text}"`;
+  // Also show under bubble
+  document.getElementById('bubble-hint').textContent = text.substring(0, 20) + (text.length > 20 ? '…' : '');
+}
+
+// ─── ON FINAL TRANSCRIPT ──────────────────────────────────────────────────
+async function onFinalTranscript(text) {
+  isProcessing = true;
+  speak(`I heard: ${text}`);
+  vibrate([20]);
+
+  // Show processing state
+  const btn = document.getElementById('bubble-btn');
+  btn.classList.add('processing');
+  document.getElementById('bubble-icon').style.display = 'none';
+  document.getElementById('bubble-spinner').style.display = 'block';
+  document.getElementById('bubble-hint').textContent = 'Thinking…';
+
+  setPanelState('processing');
+  const ptBox = document.getElementById('proc-transcript-box');
+  ptBox.style.display = 'block';
+  document.getElementById('proc-transcript-text').textContent = `"${text}"`;
+
+  try {
+    const cmd = await parseIntentWithLMStudio(text);
+    applyCommand(cmd, text);
+  } catch(err) {
+    showError(err.message || 'Something went wrong. Please try again.');
+    speak('Sorry, something went wrong.');
+    setPanelState('idle');
+    openPanel();
+  } finally {
+    isProcessing = false;
+    btn.classList.remove('processing');
+    btn.classList.add('idle-pulse');
+    document.getElementById('bubble-icon').style.display = 'block';
+    document.getElementById('bubble-spinner').style.display = 'none';
+    document.getElementById('bubble-hint').textContent = voiceSupported ? 'Hold to speak' : 'Tap to open';
+  }
+}
+
+// ─── LM STUDIO INTENT PARSING ─────────────────────────────────────────────
+// ┌───────────────────────────────────────────────────────────────────────┐
+// │  LM STUDIO CHAT CALL                                                  │
+// │  POST {LM_STUDIO_URL}/v1/chat/completions                             │
+// │  Needs: any chat model loaded + Local Server running                  │
+// └───────────────────────────────────────────────────────────────────────┘
+async function parseIntentWithLMStudio(transcript) {
+  const url = getLMStudioURL();
+
+  let response;
+  try {
+    response = await fetch(`${url}/v1/chat/completions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'local-model',
+        max_tokens: 120,
+        temperature: 0,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Extract payment intent from voice commands. ' +
+              'Reply ONLY with valid JSON, no markdown, no explanation. ' +
+              'Schema: {"intent":"paynow"|"unknown","amount":string|null,"recipient":string|null} ' +
+              'Known contacts: Daughter (Sarah Chen), Son (John Chen), Mom, Friend (David Lee). ' +
+              'Normalise: "daughter"→"Daughter","sarah"→"Daughter","son"→"Son","mom"→"Mom","david"→"Friend".'
+          },
+          { role: 'user', content: transcript }
+        ]
+      })
+    });
+  } catch(err) {
+    // Network error — LM Studio unreachable, use regex fallback
+    console.warn('LM Studio unreachable, using regex fallback:', err.message);
+    return regexFallback(transcript);
+  }
+
+  if (!response.ok) {
+    console.warn('LM Studio error, using regex fallback:', response.status);
+    return regexFallback(transcript);
+  }
+
+  try {
+    const data = await response.json();
+    const raw = data.choices?.[0]?.message?.content ?? '{}';
+    const parsed = JSON.parse(raw.replace(/```json|```/g, '').trim());
+    return { ...parsed, rawText: transcript };
+  } catch {
+    return regexFallback(transcript);
+  }
+}
+
+// Regex fallback — works without LM Studio
+function regexFallback(transcript) {
+  const amountMatch    = transcript.match(/\$?(\d+(?:\.\d{1,2})?)/);
+  const recipientMatch = transcript.match(/\b(daughter|son|mother|mom|friend|sarah|john|david)\b/i);
+  return {
+    intent:    amountMatch ? 'paynow' : 'unknown',
+    amount:    amountMatch?.[1] ?? null,
+    recipient: recipientMatch?.[1] ?? null,
+    rawText:   transcript,
+  };
+}
+
+// ─── APPLY PARSED COMMAND ─────────────────────────────────────────────────
+function applyCommand(cmd, rawText) {
+  if (cmd.intent === 'unknown' || !cmd.amount) {
+    showError('Couldn\'t understand. Try: "PayNow $50 to daughter"');
+    speak('Sorry, I didn\'t understand. Try: PayNow fifty dollars to daughter.');
+    setPanelState('idle');
+    openPanel();
+    return;
+  }
+
+  // Resolve contact
+  const r = (cmd.recipient || '').toLowerCase();
+  let contact = CONTACTS.sarah; // default
+  if (r.includes('son') || r.includes('john'))    contact = CONTACTS.john;
+  else if (r.includes('mom') || r.includes('mother')) contact = CONTACTS.mom;
+  else if (r.includes('friend') || r.includes('david')) contact = CONTACTS.david;
+  else if (r.includes('daughter') || r.includes('sarah')) contact = CONTACTS.sarah;
+
+  currentTx = {
+    amount:        cmd.amount,
+    recipientFull: contact.name,
+    recipient:     contact.subtitle,
+    phone:         contact.phone,
+    emoji:         contact.emoji,
+  };
+
+  // Update guide panel
+  document.getElementById('guide-title').textContent =
+    `PayNow $${cmd.amount} to ${contact.subtitle}`;
+  document.getElementById('guide-to').textContent     = contact.name;
+  document.getElementById('guide-amount').textContent = `$${cmd.amount}`;
+
+  const gtBox = document.getElementById('guide-transcript-box');
+  if (rawText) {
+    gtBox.style.display = 'block';
+    document.getElementById('guide-transcript-text').textContent = `"${rawText}"`;
+  }
+
+  setPanelState('guide');
+  openPanel();
+  speak(`I heard: PayNow ${cmd.amount} dollars to ${contact.subtitle}. Let me guide you.`);
+}
+
+// ─── TYPED INPUT FALLBACK ────────────────────────────────────────────────
+async function submitTyped() {
+  const input = document.getElementById('typed-input');
+  const text  = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  finalTranscript = text;
+  await onFinalTranscript(text);
+}
+
+// ─── AUTO NAVIGATION ─────────────────────────────────────────────────────
+function startAutoNav() {
+  closePanel();
+
+  // Step 1: show home guided with PayNow highlight
+  showScreen('home-guided');
+  document.getElementById('hl-paynow').classList.add('visible');
+  speak('First, I\'ll open PayNow for you');
+  vibrate([40, 30, 40]);
+
+  autoNavTimer1 = setTimeout(() => {
+    document.getElementById('hl-paynow').classList.remove('visible');
+    vibrate([60]);
+
+    // Step 2: contact list with highlight
+    showScreen('contacts');
+    speak('Now selecting your contact');
+
+    autoNavTimer2 = setTimeout(() => {
+      // Clear all contact highlights
+      document.querySelectorAll('.contact-row').forEach(r => r.classList.remove('highlighted'));
+
+      // Highlight the right contact
+      const idMap = {
+        'Sarah Chen': 'sarah', 'John Chen': 'john',
+        'Mom': 'mom', 'David Lee': 'david',
+      };
+      const contactId = idMap[currentTx.recipientFull] || 'sarah';
+      document.getElementById(`contact-${contactId}`)?.classList.add('highlighted');
+      document.getElementById('hl-contact').classList.add('visible');
+      document.getElementById('hl-contact-text').textContent =
+        `Selecting ${currentTx.recipientFull}…`;
+      speak(`Selecting ${currentTx.recipientFull}`);
+
+      autoNavTimer3 = setTimeout(() => {
+        document.getElementById('hl-contact').classList.remove('visible');
+        document.querySelectorAll('.contact-row').forEach(r => r.classList.remove('highlighted'));
+        vibrate([60]);
+
+        // Step 3: payment screen
+        document.getElementById('pay-avatar').textContent  = currentTx.emoji;
+        document.getElementById('pay-name').textContent    = currentTx.recipientFull;
+        document.getElementById('pay-phone').textContent   = currentTx.phone;
+        document.getElementById('amount-input').value      = currentTx.amount;
+        document.getElementById('pay-to').textContent      = `PayNow – ${currentTx.phone}`;
+
+        showScreen('payment');
+        speak('Here\'s the payment screen. Check the amount and confirm.');
+
+        setPanelState('payment');
+        openPanel();
+      }, 4000);
+    }, 1200);
+  }, 4000);
+}
+
+// ─── CANCEL ───────────────────────────────────────────────────────────────
+function cancelGuide() {
+  clearTimeout(autoNavTimer1);
+  clearTimeout(autoNavTimer2);
+  clearTimeout(autoNavTimer3);
+  finalTranscript = '';
+  setPanelState('idle');
+  document.getElementById('transcript-box').style.display = 'none';
+  showScreen('home');
+  closePanel();
+}
+
+// ─── CONFIRM PAYMENT ──────────────────────────────────────────────────────
+function confirmPayment() {
+  vibrate([30, 20, 60]);
+  speak('Payment sent successfully!');
+
+  const amt  = document.getElementById('amount-input').value;
+  document.getElementById('success-amt').textContent  = `$${amt} → ${currentTx.recipientFull}`;
+  document.getElementById('success-date').textContent = new Date().toLocaleString('en-US', {
+    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true,
+  });
+
+  setPanelState('success');
+  openPanel();
+}
+
+// ─── RESET ────────────────────────────────────────────────────────────────
+function resetApp() {
+  finalTranscript = '';
+  document.getElementById('error-box').style.display = 'none';
+  document.getElementById('transcript-box').style.display = 'none';
+  document.getElementById('partial-box').style.display = 'none';
+  document.getElementById('proc-transcript-box').style.display = 'none';
+  setPanelState('idle');
+  showScreen('home');
+  closePanel();
+}
+
+// ─── SHOW ERROR ───────────────────────────────────────────────────────────
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  box.style.display = 'block';
+  document.getElementById('error-text').textContent = msg;
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+initSpeechRecognition();
+</script>
+</body>
+</html>

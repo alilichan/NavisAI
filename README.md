@@ -297,7 +297,6 @@ NTU Computer Engineering
 
 📄 [View Pitch Deck](docs/NavisAI_PitchDeck.pdf)
 
-### Screenshots
 
 ### SEP Progress Reports
 

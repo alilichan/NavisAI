@@ -292,24 +292,10 @@ To become the universal AI interaction layer that enables anyone to confidently 
 
 ## SEP Progress Reports
 
-### Progress Report #1 (May 2026)
-
-* Joined NTU Student Entrepreneurship Programme (SEP)
-* Completed first MVP web application
-* Conducted initial feedback session
-* Refined product direction from banking-specific guidance to universal app navigation
-
-
-### Progress Report #2
-
-Coming Soon
-
----
-### Progress Videos
-
-#### Report #1 (May 2026)
-
-YouTube Link: Coming Soon
+| Report | Link |
+|----------|----------|
+| Report #1 (May 2026) | [View Report](progress/report-01-may-2026.md) |
+| Report #2 (July 2026) | Coming Soon |
 
 ## Pitch Deck
 

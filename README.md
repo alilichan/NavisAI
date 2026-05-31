@@ -8,6 +8,15 @@ Our mission is to make digital services accessible to everyone, regardless of ag
 
 ---
 
+## Quick Links
+
+* 📄 [Pitch Deck](docs/NavisAI_PitchDeck.pdf)
+* 📱 [MVP Prototype](prototype/)
+* 📊 [SEP Progress Reports](progress/report-01-may-2026.md)
+* 📧 Contact: [alic0034@e.ntu.edu.sg](mailto:alic0034@e.ntu.edu.sg)
+
+---
+
 ## Problem
 
 As banking, healthcare, government, and everyday services become increasingly digital, many users struggle to navigate unfamiliar applications.
@@ -86,7 +95,7 @@ Current focus areas:
 
 ---
 
-## Progress & Milestones
+## Product Roadmap
 
 ### Phase 1 — Validation & MVP (Completed)
 
@@ -155,13 +164,13 @@ Voice + Visual Instructions
 
 ## Market Opportunity
 
-Initial Target Users:
+### Initial Target Users
 
 * Elderly individuals
 * Digitally less-confident users
 * First-time smartphone users
 
-Future Expansion:
+### Future Expansion
 
 * General consumers
 * Accessibility users
@@ -184,131 +193,101 @@ Navis AI is exploring multiple monetization pathways:
 * API and SDK offerings
 
 ---
+
 ## Project Information
 
-Project Name: Navis AI
+| Item               | Details                          |
+| ------------------ | -------------------------------- |
+| Project Name       | Navis AI                         |
+| Founder            | Alicia Ong                       |
+| Institution        | Nanyang Technological University |
+| Programme          | Computer Engineering             |
+| SEP Cohort         | 2026                             |
+| Project Start Date | May 2026                         |
+| Current Stage      | Mobile MVP Development           |
 
-Founder: Alicia Ong
-
-Institution: Nanyang Technological University (NTU)
-
-Programme: Computer Engineering
-
-SEP Cohort: 2026
-
-Project Start Date: May 2026
-
-Current Stage: Mobile MVP Development
+---
 
 ## Finance & Budget
 
 ### Funding Sources
 
-| Source | Amount (SGD) |
-|----------|----------|
-| NTU SEP Grant | $3,000 |
-| Total Funding Available | $3,000 |
+| Source                  | Amount (SGD) |
+| ----------------------- | ------------ |
+| NTU SEP Grant           | $3,000       |
+| Total Funding Available | $3,000       |
 
 ### Expenditure to Date
 
-| Item | Cost (SGD) |
-|----------|----------|
-| Claude Pro (3 months)| $90 |
-| Total Spent | $90 |
+| Item                  | Cost (SGD) |
+| --------------------- | ---------- |
+| Claude Pro (3 Months) | $90        |
+| Total Spent           | $90        |
 
 ### Remaining Budget
 
-SGD $2,910
+**SGD $2,910**
+
+---
 
 ## Competitions & Achievements
 
 ### 2026
 
-- Accepted into NTU Student Entrepreneurship Programme (SEP)
-- Awarded SGD $3,000 SEP Startup Grant
+* Accepted into NTU Student Entrepreneurship Programme (SEP)
+* Awarded SGD $3,000 SEP Startup Grant
 
 ### Upcoming
 
-- Hackathons
-- Startup competitions
-- Innovation showcases
+* Hackathons
+* Startup competitions
+* Innovation showcases
+
+---
 
 ## Investment & Funding
 
-Current Funding Stage: Pre-Revenue
+| Category             | Status      |
+| -------------------- | ----------- |
+| Funding Stage        | Pre-Revenue |
+| Total Funding Raised | SGD $3,000  |
+| Angel Investment     | None        |
+| External Investment  | None        |
+| Revenue              | SGD $0      |
 
-Funding Received:
-- NTU Student Entrepreneurship Programme (SEP) Grant: SGD $3,000
-
-Angel Investment:
-- None
-
-External Investment:
-- None
-
-Revenue:
-- SGD $0
-
-Total Funding Raised:
-- SGD $3,000
+---
 
 ## Team
 
-### Founder
+### Alicia Ong
 
-**Alicia Ong**
+Founder & Product Lead
+
 NTU Computer Engineering
 
 ---
 
-## Roadmap
+## Resources
 
-### 2026
+### Pitch Deck
 
-* Complete mobile MVP
-* Conduct user testing
-* Validate product-market fit
+📄 [View Pitch Deck](docs/NavisAI_PitchDeck.pdf)
 
-### 2027
+### Screenshots
 
-* Launch public beta
-* Expand supported applications
-* Explore strategic partnerships
+Add screenshots in the `/screenshots` folder and link them here.
 
-### Long-Term Vision
+### SEP Progress Reports
 
-To become the universal AI interaction layer that enables anyone to confidently use any application through natural voice guidance.
+* [Progress Report #1 (May 2026)](progress/report-01-may-2026.md)
+* Progress Report #2 (Coming Soon)
 
 ---
-## Progress Timeline
-
-| Date | Milestone |
-|--------|-----------|
-| April 2026 | Joined NTU SEP |
-| May 2026 | Project initiated |
-| May 2026 | Banking-focused MVP completed |
-| May 2026 | First user feedback session conducted |
-| May 2026 | Product pivoted to universal app navigation |
-
-## SEP Progress Reports
-
-| Report | Link |
-|----------|----------|
-| Report #1 (May 2026) | [View Report](progress/report-01-may-2026.md) |
-| Report #2 (July 2026) | Coming Soon |
-
-## Pitch Deck
-
-[View Pitch Deck](docs/NavisAI_PitchDeck.pdf)
-
-## Screenshots
-
-[Images]
-
-## Demo Videos
-
-[Links]
 
 ## Contact
 
-For collaborations, partnerships, or feedback, please reach out through GitHub Issues or alic0034@e.ntu.edu.sg.
+For collaborations, partnerships, or feedback:
+
+📧 [alic0034@e.ntu.edu.sg](mailto:alic0034@e.ntu.edu.sg)
+
+Or open an issue on GitHub.

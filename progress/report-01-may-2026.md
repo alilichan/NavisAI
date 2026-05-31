@@ -125,4 +125,4 @@ May 2026 - Pivoted to Navis AI based on feedback and market opportunity
 
 ## Progress Video
 
-YouTube Link: Coming Soon
+YouTube Link: https://youtu.be/KYl3F9AKucE?si=O42RURvBpkxEjtVP

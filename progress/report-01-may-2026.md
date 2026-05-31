@@ -8,6 +8,18 @@ May 2026
 
 Navis AI is an AI-powered voice interaction layer that helps users navigate and complete tasks across mobile applications through real-time guidance and contextual assistance.
 
+## Product Evolution
+
+Navis AI originated from an earlier concept, SafeSpend SG, which focused on helping users understand financial and official documents through AI-powered document scanning and interpretation.
+
+During the initial validation and development phase, user feedback highlighted a broader challenge: many users struggled not only with understanding information, but also with navigating digital applications and completing tasks independently.
+
+Based on these findings, the project pivoted from document understanding to a universal AI-powered app navigation assistant.
+
+This evolution led to the development of Navis AI, which focuses on helping users interact with mobile applications through voice-guided, context-aware assistance.
+
+The core mission remains unchanged: improving digital accessibility and confidence for users.
+
 ## Objectives
 
 * Validate user problem
@@ -41,6 +53,14 @@ Original Concept:
 Updated Concept:
 
 * Universal app navigation assistant supporting multiple applications
+
+## Progress Timeline
+
+April 2026 - Entered SEP with SafeSpend SG concept
+
+May 2026 - User validation and MVP development
+
+May 2026 - Pivoted to Navis AI based on feedback and market opportunity
 
 ## Financial Update
 

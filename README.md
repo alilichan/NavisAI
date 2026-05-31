@@ -275,8 +275,6 @@ NTU Computer Engineering
 
 ### Screenshots
 
-Add screenshots in the `/screenshots` folder and link them here.
-
 ### SEP Progress Reports
 
 * [Progress Report #1 (May 2026)](progress/report-01-may-2026.md)

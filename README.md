@@ -216,7 +216,7 @@ To become the universal AI interaction layer that enables anyone to confidently 
 
 ## SEP Progress Reports
 
-### Progress Report #1 (June 2026)
+### Progress Report #1 (May 2026)
 
 * Joined NTU Student Entrepreneurship Programme (SEP)
 * Completed first MVP web application
@@ -231,4 +231,4 @@ Coming Soon
 
 ## Contact
 
-For collaborations, partnerships, or feedback, please reach out through GitHub Issues or LinkedIn.
+For collaborations, partnerships, or feedback, please reach out through GitHub Issues or alic0034@e.ntu.edu.sg.

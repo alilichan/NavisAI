@@ -37,12 +37,42 @@ The core mission remains unchanged: improving digital accessibility and confiden
 
 ✅ Refined product direction
 
-## Key Findings
+## User Validation & Feedback
 
-* Users preferred guided task completion over help pages.
-* Voice interaction reduced navigation confusion.
-* Users expressed interest beyond banking use cases.
-* Cross-app assistance was identified as a higher-value opportunity.
+### Participants
+
+- Total Participants: 8
+- Majority aged 60–70+
+- Primary device: Smartphone
+
+### Common Activities
+
+Participants commonly used:
+- WhatsApp
+- Banking applications
+- Maps
+- Videos
+- Facebook
+
+### Key Insights
+
+#### What Users Liked
+
+- Guided task completion
+- Ease of understanding the concept
+- Accessibility benefits for elderly users
+- Reduced stress when navigating technology
+
+#### Suggested Improvements
+
+- More natural and localized voice options
+- Mandarin language support
+- Clearer instructions and guidance
+- Increased confidence during financial tasks
+
+### Product Decision
+
+Based on user feedback, the project pivoted from a banking-specific assistant to Navis AI, a universal voice-guided navigation layer that can assist users across multiple applications.
 
 ## Product Pivot
 

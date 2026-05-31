@@ -94,6 +94,30 @@ Current focus areas:
 * Accessibility improvements
 
 ---
+## User Validation
+
+### Initial Feedback Session (May 2026)
+
+An initial user feedback session was conducted with 8 participants, primarily aged 60 and above, to evaluate the concept and usability of Navis AI.
+
+#### Key Findings
+
+- Users generally understood the purpose of the application.
+- Participants found guided task completion more helpful than traditional help pages.
+- Voice-based interaction was viewed positively, particularly for users with lower digital confidence.
+- Many participants believed the solution could benefit elderly users who struggle with technology.
+- Users identified banking, payments, communication, and general app navigation as valuable use cases.
+
+#### Areas for Improvement
+
+- Improve voice clarity and localization.
+- Support additional languages such as Mandarin.
+- Provide clearer step-by-step instructions.
+- Increase trust and confidence during sensitive tasks.
+
+#### Impact on Product Direction
+
+Feedback from the validation session supported expanding the product vision from a banking-focused assistant to a universal app navigation platform capable of assisting users across multiple applications.
 
 ## Product Roadmap
 

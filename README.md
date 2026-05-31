@@ -11,7 +11,7 @@ Our mission is to make digital services accessible to everyone, regardless of ag
 ## Quick Links
 
 * 📄 [Pitch Deck](docs/NavisAI_pitchdeck.pdf)
-* 📱 [MVP Prototype](prototype/)
+* 📱 [MVP Prototype](docs/)
 * 📊 [SEP Progress Reports](progress/report-01-may-2026.md)
 * 📧 Contact: [alic0034@e.ntu.edu.sg](mailto:alic0034@e.ntu.edu.sg)
 

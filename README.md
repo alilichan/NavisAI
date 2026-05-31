@@ -4,8 +4,7 @@
 Navis AI is an AI-powered mobile assistant that helps users navigate apps through real-time visual guidance.
 
 ## Team
-- John Doe - Product Lead
-- Jane Doe - AI Engineer
+- Alicia Ong - Founder
 
 ## Problem
 Many users struggle to navigate mobile applications and complete digital tasks.

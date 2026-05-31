@@ -184,6 +184,73 @@ Navis AI is exploring multiple monetization pathways:
 * API and SDK offerings
 
 ---
+## Project Information
+
+Project Name: Navis AI
+
+Founder: Alicia Ong
+
+Institution: Nanyang Technological University (NTU)
+
+Programme: Computer Engineering
+
+SEP Cohort: 2026
+
+Project Start Date: May 2026
+
+Current Stage: Mobile MVP Development
+
+## Finance & Budget
+
+### Funding Sources
+
+| Source | Amount (SGD) |
+|----------|----------|
+| NTU SEP Grant | $3,000 |
+| Total Funding Available | $3,000 |
+
+### Expenditure to Date
+
+| Item | Cost (SGD) |
+|----------|----------|
+| Claude Pro (3 months)| $90 |
+| Total Spent | $90 |
+
+### Remaining Budget
+
+SGD $2,910
+
+## Competitions & Achievements
+
+### 2026
+
+- Accepted into NTU Student Entrepreneurship Programme (SEP)
+- Awarded SGD $3,000 SEP Startup Grant
+
+### Upcoming
+
+- Hackathons
+- Startup competitions
+- Innovation showcases
+
+## Investment & Funding
+
+Current Funding Stage: Pre-Revenue
+
+Funding Received:
+- NTU Student Entrepreneurship Programme (SEP) Grant: SGD $3,000
+
+Angel Investment:
+- None
+
+External Investment:
+- None
+
+Revenue:
+- SGD $0
+
+Total Funding Raised:
+- SGD $3,000
 
 ## Team
 
@@ -213,6 +280,15 @@ NTU Computer Engineering
 To become the universal AI interaction layer that enables anyone to confidently use any application through natural voice guidance.
 
 ---
+## Progress Timeline
+
+| Date | Milestone |
+|--------|-----------|
+| April 2026 | Joined NTU SEP |
+| May 2026 | Project initiated |
+| May 2026 | Banking-focused MVP completed |
+| May 2026 | First user feedback session conducted |
+| May 2026 | Product pivoted to universal app navigation |
 
 ## SEP Progress Reports
 
@@ -223,11 +299,29 @@ To become the universal AI interaction layer that enables anyone to confidently 
 * Conducted initial feedback session
 * Refined product direction from banking-specific guidance to universal app navigation
 
+
 ### Progress Report #2
 
 Coming Soon
 
 ---
+### Progress Videos
+
+#### Report #1 (May 2026)
+
+YouTube Link: Coming Soon
+
+## Pitch Deck
+
+[View Pitch Deck](docs/NavisAI_PitchDeck.pdf)
+
+## Screenshots
+
+[Images]
+
+## Demo Videos
+
+[Links]
 
 ## Contact
 

@@ -36,21 +36,41 @@ Over the past two months, Navis AI focused on validating its product direction t
 
 ### Prototype
 
-A voice-guided WhatsApp web application was developed to simulate how Navis AI could assist users in completing digital tasks through real-time guidance.
+A voice-guided WhatsApp web application was developed to evaluate how users interact with AI-guided task completion in a familiar messaging interface.
+
+### Participants
+
+* 4 participants
+* Ages 30–59
+
+### Overall Feedback
+
+Users responded positively to the concept of AI-guided assistance, particularly for reducing uncertainty when completing unfamiliar digital tasks. However, the validation also highlighted that trust and perceived safety remain important barriers to adoption.
+
+| Validation Area            | Average Rating |
+| -------------------------- | -------------: |
+| Easy to use                |        4.0 / 5 |
+| Increased confidence       |        4.0 / 5 |
+| Helpful for elderly users  |        4.0 / 5 |
+| Felt safe using the system |       2.25 / 5 |
 
 ### Key Insights
 
-#### What Users Liked
+#### What Worked Well
 
-* Voice guidance reduced uncertainty during unfamiliar tasks.
-* Users found step-by-step assistance easier to follow than written instructions.
-* Participants believed the concept could improve digital confidence for less tech-savvy users.
+* Participants found the interface intuitive and easy to understand.
+* Voice guidance reduced the need to search for instructions independently.
+* Users believed the concept could improve digital accessibility for elderly and less tech-savvy users.
 
-#### Key Concerns
+#### Opportunities for Improvement
 
-* Users expressed hesitation when using AI guidance for sensitive workflows.
-* Trust and safety were recurring concerns, particularly for financial transactions.
-* Participants wanted greater transparency and confidence before following AI-generated instructions.
+* Trust and safety were recurring concerns, particularly for sensitive workflows.
+* Participants wanted greater confidence in voice recognition accuracy.
+* Users requested clearer feedback on what the AI was doing and when it was listening.
+
+### Key Learning
+
+The validation demonstrated that users value AI-guided assistance, but widespread adoption depends on building trust and confidence. This insight influenced the decision to focus the initial MVP on healthcare appointment booking, a lower-risk digital literacy workflow that better supports iterative user testing.
 
 ---
 

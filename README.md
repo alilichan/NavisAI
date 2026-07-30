@@ -10,7 +10,6 @@
   <img src="docs/hero.png" width="100%">
 </p>
 
-> **Placeholder:** Hero image showing a person using a phone with an AI coach demonstrating what to do through AR.
 
 ---
 

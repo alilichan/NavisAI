@@ -190,9 +190,6 @@ The remaining budget will support continued MVP development, user testing, and t
 |--------------------|-----------|
 | Funding Stage | Pre-Revenue |
 | Total Funding Raised | SGD $3,000 |
-| Angel Investment | None |
-| External Investment | None |
-| Revenue | SGD $0 |
 
 ---
 

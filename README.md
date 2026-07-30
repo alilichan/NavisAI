@@ -12,7 +12,7 @@
 
 ---
 
-# 🌍 The Problem
+# The Education Problem
 
 Learning today is often disconnected from the moment people need it.
 
@@ -22,16 +22,9 @@ These resources explain **what** to do, but rarely guide users **while** they ar
 
 We believe learning should happen through experience—not instructions.
 
-| Traditional Learning | Learning with Navis AI |
-|----------------------|------------------------|
-| 📖 Read manuals | 👓 Learn through guidance |
-| 🎥 Watch tutorials | 🤖 AI explains each step |
-| 🔍 Search online | 💬 Ask naturally |
-| 😕 Trial and error | ✅ Learn by doing |
-
 ---
 
-# 🚀 Our Vision
+# Our Vision
 
 Navis AI combines artificial intelligence with augmented reality to provide contextual, real-time guidance directly within a user's environment.
 
@@ -45,7 +38,7 @@ Our long-term vision is to build an AI-powered interactive learning platform tha
 
 ---
 
-# ✨ Our First Step
+# Our First Step
 
 Every platform begins by solving one meaningful problem.
 
@@ -59,7 +52,7 @@ This allows us to validate the interaction model while building the foundation f
 
 ---
 
-# 🧠 How It Works
+# How It Works
 
 ```text
 User Needs Help
@@ -70,21 +63,21 @@ Context Recognition
         ↓
 Task Planning
         ↓
-Real-Time Guidance
+AR visual + AI instruction Guidance
         ↓
 Learn by Doing
 ```
 
 ---
 
-# 🛣 Roadmap
+# Roadmap
 
 | Stage | Status |
 |--------|--------|
-| User Research & Validation | ✅ Completed |
-| Digital Literacy MVP | 🔄 In Progress |
-| Wearable AR Prototype | ⏳ Planned |
-| Interactive Learning Platform | ⏳ Future |
+| User Research & Validation | Completed |
+| Digital Literacy MVP | In Progress |
+| Wearable AR Prototype | Planned |
+| Interactive Learning Platform | Future |
 
 ---
 

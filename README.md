@@ -88,15 +88,6 @@ Learn by Doing
 
 ---
 
-# 📈 SEP Progress
-
-Follow Navis AI's journey from concept to product.
-
-* [Progress Report #1 (May 2026)](progress/report-01-may-2026.md)
-* Progress Report #2 (Coming Soon)
-
----
-
 ## Project Information
 
 | Item | Details |

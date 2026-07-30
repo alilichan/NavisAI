@@ -12,16 +12,6 @@
 
 ---
 
-## Quick Links
-
-* 🚀 [Try Prototype](YOUR_PROTOTYPE_LINK)
-* 🎥 [Prototype Demo](https://youtube.com/shorts/yYNPAYiGTzw)
-* 📄 [Pitch Deck](docs/NavisAI_pitchdeck.pdf)
-* 📊 [SEP Progress Reports](progress/report-01-may-2026.md)
-* 📧 Contact: [alic0034@e.ntu.edu.sg](mailto:alic0034@e.ntu.edu.sg)
-
----
-
 # 🌍 The Problem
 
 Learning today is often disconnected from the moment people need it.

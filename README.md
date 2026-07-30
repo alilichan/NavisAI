@@ -129,16 +129,6 @@ Learning Happens Naturally
 
 ---
 
-# About
-
-Navis AI is an independent project founded by Alicia Ong during the NTU Student Entrepreneurship Programme (SEP).
-
-The project explores how AI and augmented reality can transform learning from passive instruction into interactive, real-world experiences.
-
-Currently, development is focused on validating the first smartphone-based prototype before expanding toward wearable AR experiences.
-
----
-
 ## Finance & Budget
 
 ### Funding Sources
@@ -189,13 +179,13 @@ The remaining budget will support continued MVP development, user testing, and t
 
 ---
 
-## Team
+# About
 
-### Alicia Ong
+Navis AI is an independent project founded by Alicia Ong during the NTU Student Entrepreneurship Programme (SEP).
 
-Founder & Product Lead
+The project explores how AI and augmented reality can transform learning from passive instruction into interactive, real-world experiences.
 
-NTU Computer Engineering
+Currently, development is focused on validating the first smartphone-based prototype before expanding toward wearable AR experiences.
 
 ---
 
@@ -208,10 +198,12 @@ NTU Computer Engineering
 
 ---
 
-## Contact
+# Join the Journey
 
-For collaborations, partnerships, or feedback:
+Navis AI is currently in active development.
 
-📧 [alic0034@e.ntu.edu.sg](mailto:alic0034@e.ntu.edu.sg)
+We're building toward a future where learning happens naturally, in the exact moment people need it.
 
-Or open an issue on GitHub.
+If you'd like to follow the journey, collaborate, or provide feedback, we'd love to hear from you.
+
+📧 alic0034@e.ntu.edu.sg

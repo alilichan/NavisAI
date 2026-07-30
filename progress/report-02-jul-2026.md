@@ -154,6 +154,28 @@ The most significant insight from this reporting period was that users were not 
 This shifted the focus of Navis AI from task assistance toward interactive learning through AI and augmented reality.
 
 ---
+## Project Milestones
+
+✅ Completed
+
+- Second user validation session
+- Voice-guided WhatsApp prototype
+- Product vision refinement
+- Healthcare workflow selection
+
+🔄 In Progress
+
+- Android MVP
+- AI guidance engine
+- AR interaction design
+
+⏳ Upcoming
+
+- Healthcare appointment booking demo
+- Wearable AR prototype
+- User testing with updated MVP
+
+---
 
 ## Next Steps
 

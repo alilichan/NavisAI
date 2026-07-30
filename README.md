@@ -189,7 +189,7 @@ NTU Computer Engineering
 ### SEP Progress Reports
 
 * [Progress Report #1 (May 2026)](progress/report-01-may-2026.md)
-* Progress Report #2 (Coming Soon)
+* [Progress Report #2 (July 2026)](progress/report-02-jul-2026.md)
 
 ---
 

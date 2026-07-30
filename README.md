@@ -166,12 +166,6 @@ The remaining budget will support continued MVP development, user testing, and t
 * Accepted into NTU Student Entrepreneurship Programme (SEP)
 * Awarded SGD $3,000 SEP Startup Grant
 
-### Upcoming
-
-* Hackathons
-* Startup competitions
-* Innovation showcases
-
 ---
 
 ## Investment & Funding

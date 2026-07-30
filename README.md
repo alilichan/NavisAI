@@ -129,17 +129,13 @@ Learning Happens Naturally
 
 ---
 
-## Project Information
+# About
 
-| Item | Details |
-|------|---------|
-| Project Name | Navis AI |
-| Founder | Alicia Ong |
-| Institution | Nanyang Technological University |
-| Programme | Computer Engineering |
-| SEP Cohort | 2026 |
-| Project Start Date | May 2026 |
-| Current Stage | AI-guided Healthcare MVP Development |
+Navis AI is an independent project founded by Alicia Ong during the NTU Student Entrepreneurship Programme (SEP).
+
+The project explores how AI and augmented reality can transform learning from passive instruction into interactive, real-world experiences.
+
+Currently, development is focused on validating the first smartphone-based prototype before expanding toward wearable AR experiences.
 
 ---
 

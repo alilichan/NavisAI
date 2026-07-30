@@ -98,16 +98,16 @@ As augmented reality hardware continues to evolve, our long-term vision is to br
 # How It Works
 
 ```text
-User
+      User
         ↓
-Need Help
+    Need Help
         ↓
- AI Coach
+     AI Coach
 (Intent + Context)
         ↓
- AR Guidance
+   AR Guidance
         ↓
-Learn by Doing
+  Learn by Doing
 ```
 
 ---

@@ -7,7 +7,7 @@
 > Learning shouldn't begin with a manual. It should begin the moment you need help.
 
 <p align="center">
-  <img src="assets/hero.png" width="100%">
+  <img src="docs/hero.png" width="100%">
 </p>
 
 ---

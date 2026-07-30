@@ -123,6 +123,16 @@ As augmented reality hardware continues to evolve, our long-term vision is to br
 
 ---
 
+# About
+
+Navis AI is an independent project founded by Alicia Ong during the NTU Student Entrepreneurship Programme (SEP).
+
+The project explores how AI and augmented reality can transform learning from passive instruction into interactive, real-world experiences.
+
+Currently, development is focused on validating the first smartphone-based prototype before expanding toward wearable AR experiences.
+
+---
+
 ## Finance & Budget
 
 ### Funding Sources
@@ -173,13 +183,15 @@ The remaining budget will support continued MVP development, user testing, and t
 
 ---
 
-# About
+# Team
 
-Navis AI is an independent project founded by Alicia Ong during the NTU Student Entrepreneurship Programme (SEP).
+### Alicia Ong
 
-The project explores how AI and augmented reality can transform learning from passive instruction into interactive, real-world experiences.
+Founder
 
-Currently, development is focused on validating the first smartphone-based prototype before expanding toward wearable AR experiences.
+Computer Engineering, Nanyang Technological University
+
+Interested in AI, human-computer interaction, and designing technology that helps people learn through experience.
 
 ---
 

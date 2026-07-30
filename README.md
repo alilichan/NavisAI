@@ -98,22 +98,16 @@ As augmented reality hardware continues to evolve, our long-term vision is to br
 # How It Works
 
 ```text
-User Needs Help
+User
         ↓
-AI Understands Intent
+Need Help
         ↓
-AI Understands Context
+ AI Coach
+(Intent + Context)
         ↓
-AI Plans the Next Best Action
+ AR Guidance
         ↓
-AI Coach Demonstrates the Task
-  • Visual AR guidance
-  • Gestures & animations
-  • Voice & text coaching
-        ↓
-User Completes the Step
-        ↓
-Learning Happens Naturally
+Learn by Doing
 ```
 
 ---

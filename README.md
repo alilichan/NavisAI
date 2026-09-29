@@ -40,8 +40,55 @@ Rather than simply providing answers, Navis AI guides users step by step until t
 </p>
 
 > **Placeholder:** A concept illustration showing an AI coach standing beside a user, pointing and demonstrating actions through AR.
+# Current Prototype
+
+Navis AI is currently developing a smartphone-based visual guidance
+prototype built around a simple interaction:
+
+**SEE → ASK → POINT**
+
+Users point their phone camera at something they want to understand
+and ask a natural-language question.
+
+For example:
+
+> "Where is the C=C double bond?"
+
+Navis AI uses computer vision to identify the requested visual element
+and determines where it appears in the camera view. An AR-style pointer
+then guides the user directly to the relevant location.
+
+This allows Navis to move beyond simply answering questions.
+
+Instead of:
+
+> "The C=C double bond is between these two carbon atoms."
+
+Navis aims to show:
+
+> **"It's right here."**
+
+<p align="center">
+  <img src="assets/navis-current-mvp.png" width="90%">
+</p>
+
+### Current Technology
+
+```text
+Smartphone Camera
+       ↓
+Natural Language Question
+       ↓
+Gemini Vision
+       ↓
+Visual Target + Coordinates
+       ↓
+AR Pointer
+       ↓
+Contextual Explanation
 
 ---
+
 
 # Potential Applications
 

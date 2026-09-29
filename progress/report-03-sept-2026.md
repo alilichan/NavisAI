@@ -48,7 +48,6 @@ This resulted in the development of the first prototype of the core Navis AI int
 ✅ Refined the Navis AI interface and user experience
 
 ✅ Established the technical architecture for future AR learning applications
-
 ---
 
 ## Product Evolution

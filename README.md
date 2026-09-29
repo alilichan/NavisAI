@@ -128,18 +128,28 @@ Learn everyday tasks naturally through interactive AR guidance.
 
 Every platform begins by solving one meaningful problem.
 
-Our first prototype focuses on **digital literacy** by helping users book healthcare appointments through AI-guided augmented reality.
+Our first technical prototype focuses on **visual learning and guidance**.
 
-By using a smartphone as the first platform, we can validate the core learning experience—understanding context, guiding users in real time, and enabling learning through doing.
+Navis AI uses a smartphone camera and AI vision to understand what a
+user is looking at and identify the specific visual element they are
+asking about.
 
-As augmented reality hardware continues to evolve, our long-term vision is to bring this same AI coaching experience to wearable AR glasses.
+For example, a student could point their camera at a chemistry diagram
+and ask:
 
-<p align="center">
-  <img src="assets/healthcare-mvp.png" width="90%">
-</p>
+> "Where is the C=C double bond?"
 
-> **Placeholder:** Mock-up of the current phone prototype showing AI coaching during healthcare appointment booking.
+Rather than simply explaining the answer, Navis identifies the relevant
+feature and visually points to it.
 
+This prototype allows us to validate the fundamental interaction behind
+the larger Navis vision:
+
+**SEE → ASK → POINT**
+
+Once this interaction is validated, the same technology can be applied
+to digital literacy, workplace training, everyday tasks, and eventually
+wearable AR experiences.
 ---
 
 # How It Works

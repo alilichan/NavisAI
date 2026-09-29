@@ -216,19 +216,22 @@ These challenges will form the focus of the next stage of development.
 | Item             | Amount (SGD) |
 | ---------------- | -----------: |
 | NTU SEP Grant    |       $3,000 |
-| Claude Pro       |          $90 |
-| Remaining Budget |       $2,910 |
+| Claude Pro       |         $150 |
+| Remaining Budget |       $2,850 |
 
 ### Planned Expenditure
 
-Future expenditure is expected to focus on:
+Future expenditure will primarily support continued development and testing of the Navis AI prototype.
 
-* Continued software development
-* AI development and API usage
-* User testing
-* Prototype hardware
+Planned expenses include:
+
+* Gemini API usage for AI-powered visual analysis
+* Continued AI development tools and software
+* User testing and prototype development
 * AR/VR hardware for future experimentation
+* Other software or technical resources required for MVP development
 
+As development moves toward a real-time visual guidance experience, additional Gemini API usage is expected to support testing, visual analysis, and refinement of the AI guidance system.
 ---
 
 ## Competitions & Activities

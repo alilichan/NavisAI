@@ -287,4 +287,4 @@ As development moves toward a real-time visual guidance experience, additional G
 
 ## Progress Video
 
-*Coming Soon*
+(https://youtu.be/mhFGBI7dz8Y)

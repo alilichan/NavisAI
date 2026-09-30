@@ -252,6 +252,7 @@ Interested in AI, human-computer interaction, and designing technology that help
 
 * [Progress Report #1 (May 2026)](progress/report-01-may-2026.md)
 * [Progress Report #2 (July 2026)](progress/report-02-jul-2026.md)
+* [Progress Report #2 (September 2026)](progress/report-03-sept-2026.md)
 
 ---
 
